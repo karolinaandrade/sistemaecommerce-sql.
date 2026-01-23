@@ -35,3 +35,4 @@ CONSTRAINT fk_cliente FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
 INSERT INTO Clientes (nome, email) VALUES ('Seu Nome', 'seuemail@teste.com');
 SELECT * FROM Clientes;
 
+
