@@ -1,0 +1,37 @@
+
+
+
+-- Removendo tabelas para evitar erros de duplicata
+DROP TABLE IF EXISTS Pedidos;
+DROP TABLE IF EXISTS Produtos;
+DROP TABLE IF EXISTS Clientes;
+
+-- Criando a tabela de Clientes
+CREATE TABLE Clientes (
+id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(100) NOT NULL,
+email VARCHAR(100) UNIQUE,
+data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Criando a tabela de Produtos
+CREATE TABLE Produtos (
+id_produto INT PRIMARY KEY AUTO_INCREMENT,
+nome_produto VARCHAR(100) NOT NULL,
+preco DECIMAL(10, 2) NOT NULL,
+estoque INT DEFAULT 0
+);
+
+-- Criando a tabela de Pedidos
+CREATE TABLE Pedidos (
+id_pedido INT PRIMARY KEY AUTO_INCREMENT,
+id_cliente INT,
+data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+valor_total DECIMAL(10, 2),
+CONSTRAINT fk_cliente FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
+);
+
+-- Teste de inserção
+INSERT INTO Clientes (nome, email) VALUES ('Seu Nome', 'seuemail@teste.com');
+SELECT * FROM Clientes;
+
